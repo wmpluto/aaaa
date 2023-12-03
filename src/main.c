@@ -250,8 +250,7 @@ void main (void)
 
 	        
          	// Update the display	
-			if(Rotate==1||Rotate==2)TemperatureDisplay();				
-			else if(Rotate==3||Rotate==4)BatteryDisplay();
+			if(Rotate==1||Rotate==2||Rotate==3||Rotate==4)TemperatureDisplay();				
 			else TimeDisplay();
 			
 		}
@@ -684,12 +683,17 @@ void BatteryDisplay(void)
 ******************************************************************************/
 void TemperatureDisplay (void)
 {	
-	unsigned int result;
+	unsigned int result, minus_flag;
 	SEG_COLON=0;
-
+	
 
 	result = TemperatureV;	
-	result -= T_OFFSET_ZERO;        // Shift by the 0 degree offset (400mV for MCP9701)
+	minus_flag = 0;
+	if (result < T_OFFSET_ZERO){
+		result = T_OFFSET_ZERO - result;
+		minus_flag = 1;
+	} else 
+		result -= T_OFFSET_ZERO;        // Shift by the 0 degree offset (400mV for MCP9701)
 	result = result * 10;			// scale up so we can do integer math to calc temperature
     result = result / T_DIVISOR;	// 19.5mV/degree (195)for MCP9701 which scales down at the same time
 
@@ -710,7 +714,7 @@ void TemperatureDisplay (void)
 	}
 	
 	lcd_putc(CHAR_t,4,0); 			// Display a "t" in the top right corner to indicate Temperature
-
+	if(minus_flag) lcd_putc(CHAR_MINUS,3,0); 
 }
 
 
@@ -739,9 +743,6 @@ void TimeDisplay(void)
 	{
 		// 24 Hour format 
 		ShowNumber(Time24, 0);				// Display 24 Hour time
-		Temp=Sec/10;						
-		Temp*=10;
-		lcd_putc(Sec-Temp,4,0);				// Show seconds (0 to 9) on the top right corner
 	}
 }
 

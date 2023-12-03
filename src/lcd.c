@@ -65,8 +65,7 @@
 *           000   7  
 *
 ***********************************************************/
-#define CHARMAPSIZE 22
-unsigned char map_numbers[CHARMAPSIZE]={
+unsigned char map_numbers[]={
 								0b00111111,		// 0
 								0b00000110,		// 1
 								0b01101101,		// 2
@@ -88,8 +87,9 @@ unsigned char map_numbers[CHARMAPSIZE]={
 								0b01100011,		// o
 								0b01100010,		// n
 								0b00000000,		// SPACE
-								0b01111100}; 	// P
-						
+								0b01111100, 	// P
+								0b01000000, 	// -
+						};
 							
 
 
@@ -200,7 +200,7 @@ void lcd_putc(unsigned char num, unsigned char segment, unsigned char dot)
 {
 	unsigned char map;
 
-	if(num >= CHARMAPSIZE) return;	// Dont display if it doesnt exist
+	if(num >= sizeof(map_numbers)) return;	// Dont display if it doesnt exist
 	map=map_numbers[num];			// Get the dot map from the array
 	dot &=0x01;						// Only interested in the lowest Bit for teh dot 
 					
