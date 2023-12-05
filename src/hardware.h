@@ -46,6 +46,42 @@
 *********************************************/
 
 #include "GenericTypeDefs.h"
+#include "main.h"
+
+/*****************************************************************************
+*                           Definitions and Equates
+*****************************************************************************/
+// System flag defines
+#define block   _sys_flags._block               // alias for block of sys flags
+#define tick    _sys_flags._flags._tick         // alias for system time tick
+
+// Cap touch defines
+#define update  _sys_flags._flags._update       // alias for system update flag
+#define first   _sys_flags._flags._first        // alias for avg preload flag
+#define BTN1    _sys_flags._flags._BTN1         // alias for system Button 1 state
+#define BTN2    _sys_flags._flags._BTN2         // alias for system Button 2 state
+
+
+BYTE    CS_statevar;        // state variable for cap touch system
+WORD    raw[2];             // raw value variables for cap touch
+WORD    avg[2];             // current state of environment
+signed int	thold[2];			// thresholds
+WORD	avgrst[2];			// Average Reset counter (If key held for too long)
+WORD    temp_avg;           // temporary variable for cap touch system
+
+
+// system flags
+union {
+    BYTE    _block;
+    struct {
+        BYTE    _tick:1;
+        BYTE    _first:1;
+        BYTE    _update:1;
+        BYTE    _BTN1:1;
+        BYTE    _BTN2:1;
+        BYTE    unused:3;
+    } _flags;
+} _sys_flags;
 
 #define USE_PWM					// Use PWM to output to speaker
 

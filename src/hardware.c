@@ -3,7 +3,6 @@
 *********************************************/
 #include <pic.h>
 #include "hardware.h"
-#include "capsense.h"
 
 /*********************************************
 *      Configuration Bit Settings

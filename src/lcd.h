@@ -9,7 +9,7 @@
 * Microchip Technology Incorporated ("Microchip") retains all ownership and
 * intellectual property rights in the code accompanying this message and in
 * all derivatives hereto.  You may use this code, and any derivatives created
-* by any person or entity by or on your behalf, exclusively with Microchip�s
+* by any person or entity by or on your behalf, exclusively with Microchip’s
 * proprietary products.  Your acceptance and/or use of this code constitutes
 * agreement to the terms and conditions of this notice.
 *
@@ -17,7 +17,7 @@
 * WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT
 * LIMITED TO, IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND
 * FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS CODE, ITS INTERACTION WITH
-* MICROCHIP�S PRODUCTS, COMBINATION WITH ANY OTHER PRODUCTS, OR USE IN ANY
+* MICROCHIP’S PRODUCTS, COMBINATION WITH ANY OTHER PRODUCTS, OR USE IN ANY
 * APPLICATION.
 *
 * YOU ACKNOWLEDGE AND AGREE THAT, IN NO EVENT, SHALL MICROCHIP BE LIABLE,

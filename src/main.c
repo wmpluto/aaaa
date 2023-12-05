@@ -82,7 +82,7 @@
 #include "GenericTypeDefs.h"
 #include "main.h"
 #include "lcd.h"
-
+#include "hardware.h"
 
 /*****************************************************************************
 *                            PIC Configuration
@@ -90,43 +90,12 @@
 __CONFIG(FOSC_INTOSC&WDTE_OFF&PWRTE_ON&MCLRE_ON&CP_OFF&CPD_OFF&BOREN_OFF&CLKOUTEN_OFF&IESO_OFF&FCMEN_ON);
 __CONFIG(WRT_OFF&PLLEN_OFF&STVREN_OFF&BORV_19&LVP_OFF);
 
-
-/*****************************************************************************
-*                           Definitions and Equates
-*****************************************************************************/
-// System flag defines
-#define block   _sys_flags._block               // alias for block of sys flags
-#define tick    _sys_flags._flags._tick         // alias for system time tick
-
-// Cap touch defines
-#define update  _sys_flags._flags._update       // alias for system update flag
-#define first   _sys_flags._flags._first        // alias for avg preload flag
-#define BTN1    _sys_flags._flags._BTN1         // alias for system Button 1 state
-#define BTN2    _sys_flags._flags._BTN2         // alias for system Button 2 state
-
+ 
 /*****************************************************************************
 *                          Global Variables
 *****************************************************************************/
 
-BYTE    CS_statevar;        // state variable for cap touch system
-WORD    raw[2];             // raw value variables for cap touch
-WORD    avg[2];             // current state of environment
-signed int	thold[2];			// thresholds
-WORD	avgrst[2];			// Average Reset counter (If key held for too long)
-WORD    temp_avg;           // temporary variable for cap touch system
 
-// system flags
-union {
-    BYTE    _block;
-    struct {
-        BYTE    _tick:1;
-        BYTE    _first:1;
-        BYTE    _update:1;
-        BYTE    _BTN1:1;
-        BYTE    _BTN2:1;
-        BYTE    unused:3;
-    } _flags;
-} _sys_flags;
 
 char TickCount=0;			// Counts ticks, 8 per second then clears
 char BatTempSel=0;			// Indicates if sampling Battery or Temperature
@@ -250,7 +219,8 @@ void main (void)
 
 	        
          	// Update the display	
-			if(Rotate==1||Rotate==2||Rotate==3||Rotate==4)TemperatureDisplay();				
+			if(Rotate==1||Rotate==2)TemperatureDisplay();				
+			else if(Rotate==3||Rotate==4)BatteryDisplay();				
 			else TimeDisplay();
 			
 		}
@@ -284,7 +254,7 @@ void main (void)
 *
 * TMR1 used as a means of generating interrupts at 8 times a second.  
 ******************************************************************************/
-void interrupt isr(void)
+void __interrupt() INTERRUPT_InterruptManager (void)
 {
 	if(TMR1IF == 1)
 	{

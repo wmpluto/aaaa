@@ -196,7 +196,7 @@ void lcd_clear_special(void)
 * Output:   None
 *
 ******************************************************************************/
-void lcd_putc(unsigned char num, unsigned char segment, unsigned char dot)
+void lcd_putc(unsigned char num,   char segment,   char dot)
 {
 	unsigned char map;
 
