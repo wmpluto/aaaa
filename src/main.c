@@ -76,7 +76,7 @@
 //*****************************************************************************
 // Include and Header files
 //*****************************************************************************
-#define VERSION 106			// Format: MMmm  MM=Major mm=minor decimal inserted between
+#define VERSION 200			// Format: MMmm  MM=Major mm=minor decimal inserted between
 
 #include "pic.h"
 #include "GenericTypeDefs.h"
@@ -139,6 +139,7 @@ void AlarmDisplay(void);					// Alarm time Display function
 void AlarmCheck(void);						// Alarm Function
 #endif
 
+#pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
 
 /*****************************************************************************
 * 									MAIN 
@@ -162,7 +163,7 @@ void main (void)
 		tick=0;
 	}
 
-	AMPM=0;				// Start in AM/PM mode
+	AMPM=1;				// Start in AM/PM mode
 	Rotate=0;			// Clear data rotation count
 	SetupDelay=0;		// Clear delay count to enter the Setup
 	
@@ -183,7 +184,6 @@ void main (void)
 				Rotate++; 		// Rotates between time,temp and bat V
 				if(Rotate >=20)Rotate=0;
 
-				SEG_MCHP^=1;	// Toggles the Microchip Technology Inc Logo
 			}
 			if(TickCount==4) SEG_COLON=1; // Sets Colon 
 			
@@ -220,7 +220,6 @@ void main (void)
 	        
          	// Update the display	
 			if(Rotate==1||Rotate==2)TemperatureDisplay();				
-			else if(Rotate==3||Rotate==4)BatteryDisplay();				
 			else TimeDisplay();
 			
 		}
@@ -684,7 +683,14 @@ void TemperatureDisplay (void)
 	}
 	
 	lcd_putc(CHAR_t,4,0); 			// Display a "t" in the top right corner to indicate Temperature
-	if(minus_flag) lcd_putc(CHAR_MINUS,3,0); 
+	if(minus_flag) lcd_putc(CHAR_MINUS,3,0);
+
+	SEG_BAT1=1;								// Battery Outline always displayed
+	SEG_BAT2=SEG_BAT3=SEG_BAT4=0;
+	// No Bars indicates battery is below BAT_LEVEL_MIN and should be replaced
+	if(BatteryV > BAT_LEVEL_MIN)SEG_BAT2=1;	// One Bar
+	if(BatteryV > BAT_LEVEL_MED)SEG_BAT3=1;	// Two Bars
+	if(BatteryV > BAT_LEVEL_MAX)SEG_BAT4=1;	// Three Bars    
 }
 
 
@@ -714,6 +720,7 @@ void TimeDisplay(void)
 		// 24 Hour format 
 		ShowNumber(Time24, 0);				// Display 24 Hour time
 	}
+    lcd_putc(CHAR_SPACE,4,0);
 }
 
 

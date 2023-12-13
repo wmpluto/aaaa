@@ -34,7 +34,7 @@
     <conf name="default" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <targetDevice>PIC16F1933</targetDevice>
+        <targetDevice>PIC16LF1933</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
         <platformTool>pk4hybrid</platformTool>
@@ -192,10 +192,10 @@
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.ledbrightness" value="5"/>
-        <property key="programoptions.pgcconfig" value="pull down"/>
-        <property key="programoptions.pgcresistor.value" value="4.7"/>
-        <property key="programoptions.pgdconfig" value="pull down"/>
-        <property key="programoptions.pgdresistor.value" value="4.7"/>
+        <property key="programoptions.pgcconfig" value="none"/>
+        <property key="programoptions.pgcresistor.value" value="1"/>
+        <property key="programoptions.pgdconfig" value="none"/>
+        <property key="programoptions.pgdresistor.value" value="1"/>
         <property key="programoptions.pgmentry.voltage" value="high"/>
         <property key="programoptions.pgmspeed" value="Min"/>
         <property key="programoptions.preservedataflash" value="false"/>
@@ -216,7 +216,7 @@
                   value="toolpack.updateoptions.uselatestoolpack"/>
         <property key="toolpack.updateoptions.packversion"
                   value="Press to select which tool pack to use"/>
-        <property key="voltagevalue" value="3.0"/>
+        <property key="voltagevalue" value="3"/>
       </Tool>
       <XC8-CO>
         <property key="coverage-enable" value=""/>
@@ -257,7 +257,7 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
-        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="debugoptions.useswbreakpoints" value="true"/>
         <property key="event.recorder.enabled" value="false"/>
         <property key="event.recorder.scvd.files" value=""/>
         <property key="freeze.timers" value="false"/>
@@ -276,14 +276,16 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-fff"/>
         <property key="poweroptions.powerenable" value="true"/>
+        <property key="programmerToGoFilePath"
+                  value="D:/TMP/aaaa/clock.X/debug/default/clock_ptg"/>
         <property key="programmerToGoImageName" value="clock_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.ledbrightness" value="5"/>
-        <property key="programoptions.pgcconfig" value="pull down"/>
-        <property key="programoptions.pgcresistor.value" value="4.7"/>
-        <property key="programoptions.pgdconfig" value="pull down"/>
-        <property key="programoptions.pgdresistor.value" value="4.7"/>
+        <property key="programoptions.pgcconfig" value="none"/>
+        <property key="programoptions.pgcresistor.value" value="1"/>
+        <property key="programoptions.pgdconfig" value="none"/>
+        <property key="programoptions.pgdresistor.value" value="1"/>
         <property key="programoptions.pgmentry.voltage" value="high"/>
         <property key="programoptions.pgmspeed" value="Min"/>
         <property key="programoptions.preservedataflash" value="false"/>
@@ -304,7 +306,7 @@
                   value="toolpack.updateoptions.uselatestoolpack"/>
         <property key="toolpack.updateoptions.packversion"
                   value="Press to select which tool pack to use"/>
-        <property key="voltagevalue" value="3.0"/>
+        <property key="voltagevalue" value="3"/>
       </pk4hybrid>
     </conf>
   </confs>

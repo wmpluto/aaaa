@@ -4,7 +4,7 @@
 * Microchip Technology Incorporated ("Microchip") retains all ownership and
 * intellectual property rights in the code accompanying this message and in
 * all derivatives hereto.  You may use this code, and any derivatives created
-* by any person or entity by or on your behalf, exclusively with Microchip’s
+* by any person or entity by or on your behalf, exclusively with Microchipï¿½s
 * proprietary products.  Your acceptance and/or use of this code constitutes
 * agreement to the terms and conditions of this notice.
 *
@@ -12,7 +12,7 @@
 * WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT
 * LIMITED TO, IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND
 * FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS CODE, ITS INTERACTION WITH
-* MICROCHIP’S PRODUCTS, COMBINATION WITH ANY OTHER PRODUCTS, OR USE IN ANY
+* MICROCHIPï¿½S PRODUCTS, COMBINATION WITH ANY OTHER PRODUCTS, OR USE IN ANY
 * APPLICATION.
 *
 * YOU ACKNOWLEDGE AND AGREE THAT, IN NO EVENT, SHALL MICROCHIP BE LIABLE,
@@ -61,9 +61,9 @@
 #define ADC_BTN2        0b00101001              // select AN10 Button 2
 #define ADC_BTN1        0b00110001              // select AN12 Button 1
 
-#define threshold       20                      // Power up default threshold for valid press
+#define threshold       30                      // Power up default threshold for valid press
 #define thresholdmin	15						// Min threshold allowed
-#define thresholdmax	35						// Max threshold allowed
+#define thresholdmax	40						// Max threshold allowed
 #define AVGRST_MAX		60*4					// If key held for more than 60 seconds reset it
 
 //**** cap touch defines for CVD ****
